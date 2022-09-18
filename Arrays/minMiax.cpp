@@ -1,8 +1,61 @@
 #include <iostream>
 using namespace std;
 // Approach 2
-
-
+// comapre in pairs
+void getMinMax2(int arr[], int n)
+{
+    int maxElem, minElem;
+    int i = 0;
+    // if n is odd
+    if (n % 2 != 0)
+    {
+        minElem = arr[0];
+        maxElem = arr[0];
+        i = 1;
+    }
+    else
+    {
+        if (arr[1] > arr[0])
+        {
+            minElem = arr[0];
+            maxElem = arr[1];
+        }
+        else
+        {
+            minElem = arr[1];
+            maxElem = arr[0];
+        }
+        i = 2;
+    }
+    while (i < n - 1)
+    {
+        if (arr[i] > arr[i + 1])
+        {
+            if (arr[i] > maxElem)
+            {
+                maxElem = arr[i];
+            }
+            if (arr[i + 1] < minElem)
+            {
+                minElem = arr[i + 1];
+            }
+        }
+        else
+        {
+            if (arr[i + 1] > maxElem)
+            {
+                maxElem = arr[i + 1];
+            }
+            if (arr[i] < minElem)
+            {
+                minElem = arr[i];
+            }
+        }
+        i += 2;
+    }
+    cout << "Max " << maxElem << endl;
+    cout << "Min " << minElem;
+}
 
 // approach 1
 // Comaprisons 2*(n-2)+1
@@ -53,7 +106,7 @@ int main()
     {
         cin >> arr[i];
     }
-    getMinMax(arr, n);
+    getMinMax2(arr, n);
 
     delete[] arr;
 }
